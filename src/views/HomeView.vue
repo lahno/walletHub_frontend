@@ -10,8 +10,8 @@
 <!--        </div>-->
 <!--      </div>-->
       <div class="text-center">
-        <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 dark:text-gray-400 sm:text-7xl">A personal space that attracts and holds attention</h1>
-        <p class="mt-8 text-lg font-medium text-pretty text-gray-500 dark:text-gray-300 sm:text-xl/8">A platform for those who develop their content and want to grow organically: from design and positioning to increasing engagement and a loyal audience. Everything to make your personal profile a source of stable income.</p>
+        <h1 class="text-5xl font-semibold tracking-tight text-balance text-gray-900 dark:text-gray-400 sm:text-7xl">Your secure gateway to the crypto world</h1>
+        <p class="mt-8 text-lg font-medium text-pretty text-gray-500 dark:text-gray-300 sm:text-xl/8">Create and manage crypto wallets in one convenient space: security, simplicity, and complete control over your digital assets. Everything you need for a confident start and stable growth in Web3.</p>
 <!--        <div class="mt-10 flex items-center justify-center gap-x-6">-->
 <!--          <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get started</a>-->
 <!--          <a href="#" class="text-sm/6 font-semibold text-gray-900">Learn more <span aria-hidden="true">→</span></a>-->
