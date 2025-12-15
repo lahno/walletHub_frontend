@@ -1,5 +1,4 @@
 <script>
-import WalletDropdownMenu from "@/components/wallet/WalletDropdownMenu.vue";
 import Button from "@/components/forms/Button.vue";
 import WalletList from "@/components/wallet/WalletList.vue";
 import DeleteDialog from "./DeleteDialog.vue";
@@ -12,11 +11,12 @@ import NewWalletForm from "@/components/wallet/NewWalletForm.vue";
 const toastStore = useToastStore();
 
 export default {
-  components: {NewWalletForm, AddressList: WalletList, Button, AddressDropdownMenu: WalletDropdownMenu, DeleteDialog},
+  components: {NewWalletForm, AddressList: WalletList, Button, DeleteDialog},
   props: {
     client: Object,
     isLoading: Boolean
   },
+  emits: ["update-client-list"],
   data() {
     return {
       isDeleteModalOpen: false,
@@ -100,7 +100,7 @@ export default {
       </div>
     </div>
     <div v-if="client.wallets.length" class="flex w-full items-center justify-between space-x-6 p-6">
-      <AddressList :wallets="client.wallets" />
+      <AddressList :wallets="client.wallets" :is-loading="isLoading" @update-wallet-list="$emit('update-client-list')" />
     </div>
 
     <!-- Модальное окно удаления -->

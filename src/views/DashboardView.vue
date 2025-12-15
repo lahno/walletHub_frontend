@@ -115,7 +115,7 @@ export default {
             @clear-errors="fieldName => { errors[fieldName] = []; }"
         />
 
-        <ClientList v-if="clients.length" :clients="clients" @update-client-list="fetchClients" />
+        <ClientList v-if="clients.length" :clients="clients" :is-loading="isLoadingData" @update-client-list="fetchClients" />
 
       </div>
     </div>
