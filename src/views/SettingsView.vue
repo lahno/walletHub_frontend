@@ -182,165 +182,21 @@ export default {
       <div class="grid grid-cols-6 gap-x-3 gap-y-5">
         <div class="col-span-6 col-start-1 lg:col-span-3 lg:col-start-1 md:col-span-4 md:col-start-1">
           <div class="mt-4">
-            <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+<!--            <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">-->
 
-              <!-- Сообщение -->
-              <div v-if="msg" class="mb-4 font-normal text-gray-700 dark:text-gray-300">
-                {{ msg }}
-              </div>
+<!--              &lt;!&ndash; Сообщение &ndash;&gt;-->
+<!--              <div v-if="msg" class="mb-4 font-normal text-gray-700 dark:text-gray-300">-->
+<!--                {{ msg }}-->
+<!--              </div>-->
 
-              <div class="flex justify-center items-center my-5"
-                   v-if="isLoadingForm || !changedProfile.settings">
-                <Loader :size="6"/>
-              </div>
+<!--              <div class="flex justify-center items-center my-5"-->
+<!--                   v-if="isLoadingForm || !changedProfile.settings">-->
+<!--                <Loader :size="6"/>-->
+<!--              </div>-->
 
-              <div v-else class="max-w-full mx-auto">
-                <label class="block text-lg font-normal text-gray-700 dark:text-gray-300">Архивы</label>
-                <!-- Количество видимых логов -->
-                <div v-if="changedProfile.settings.visible_logs !== undefined" class="w-full grid gap-3 grid-cols-2 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-2">
-                  <Select
-                      v-model="changedProfile.settings.visible_logs"
-                      :items="visible_logs"
-                      placeholder="Сколько отображать логов"
-                      :required="false"
-                      :errors="errors['settings.visible_logs']"
-                      @clear-errors="clearFieldErrors('settings.visible_logs')"
-                  />
-                </div>
+<!--              <h4>Настройки</h4>-->
 
-                <!-- Использовать прокси в запросах (use_proxy_api_client) -->
-                <div class="my-6">
-                  <label class="block text-lg font-normal text-gray-700 dark:text-gray-300">APIClient</label>
-                  <SwitchGroup class="mb-2">
-                    <div class="flex items-center">
-                      <Switch
-                          v-model="changedProfile.settings.use_proxy_api_client"
-                          :class="changedProfile.settings.use_proxy_api_client ? 'bg-green-500' : 'bg-slate-300'"
-                          class="relative inline-flex h-[24px] w-[48px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
-                      >
-                        <span class="sr-only">use_proxy_api_client</span>
-                        <span
-                            aria-hidden="true"
-                            :class="changedProfile.settings.use_proxy_api_client ? 'translate-x-6' : 'translate-x-0'"
-                            class="pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
-                        />
-                      </Switch>
-                      <SwitchLabel class="min-w-30 ml-4 text-sm font-light text-gray-700 dark:text-gray-300">Использовать прокси в запросах</SwitchLabel>
-                    </div>
-                  </SwitchGroup>
-                </div>
-
-                <div class="my-6">
-                  <label class="block text-lg font-normal text-gray-700 dark:text-gray-300">Поиск таргетов</label>
-                  <!-- Количество таргетов из рекомендованных -->
-                  <div v-if="changedProfile.settings.count_recommends !== undefined" class="w-full grid gap-3 grid-cols-2 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-2">
-                    <Select
-                        v-model="changedProfile.settings.count_recommends"
-                        :items="count_recommends"
-                        placeholder="Количество таргетов для поиска рекомендованных"
-                        :required="false"
-                        :errors="errors['settings.count_recommends']"
-                        @clear-errors="clearFieldErrors('settings.count_recommends')"
-                    />
-                  </div>
-
-                  <!-- Вложенность при поиске друзей друзей -->
-                  <div v-if="changedProfile.settings.find_friends_max_depth !== undefined" class="w-full grid gap-3 grid-cols-2 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-2">
-                    <Select
-                        v-model="changedProfile.settings.find_friends_max_depth"
-                        :items="find_friends_max_depth"
-                        placeholder="Вложенность при поиске друзей друзей"
-                        :required="false"
-                        :errors="errors['settings.find_friends_max_depth']"
-                        @clear-errors="clearFieldErrors('settings.find_friends_max_depth')"
-                    />
-                  </div>
-                </div>
-
-                <div class="my-6">
-                  <label class="block text-lg font-normal text-gray-700 dark:text-gray-300">Рассылка комментариев</label>
-                  <!-- Удаление таргетов и отписка при рассылке комментариев -->
-                  <SwitchGroup class="mb-2">
-                    <div class="flex items-center">
-                      <Switch
-                          v-model="changedProfile.settings.unsubscribe_where_error_posts_can_comment"
-                          :class="changedProfile.settings.unsubscribe_where_error_posts_can_comment ? 'bg-green-500' : 'bg-slate-300'"
-                          class="relative inline-flex h-[24px] w-[48px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
-                      >
-                        <span class="sr-only">unsubscribe_where_error_posts_can_comment</span>
-                        <span
-                            aria-hidden="true"
-                            :class="changedProfile.settings.unsubscribe_where_error_posts_can_comment ? 'translate-x-6' : 'translate-x-0'"
-                            class="pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
-                        />
-                      </Switch>
-                      <SwitchLabel class="min-w-30 ml-4 text-sm font-light text-gray-700 dark:text-gray-300">Удалять таргет если закрыты комментарии</SwitchLabel>
-                    </div>
-                  </SwitchGroup>
-                </div>
-
-                <div class="my-6">
-                  <label class="block text-lg font-normal text-gray-700 dark:text-gray-300">Воркеры (общее)</label>
-                  <SwitchGroup class="mb-2">
-                    <div class="flex items-center">
-                      <Switch
-                          v-model="changedProfile.settings.skip_error_subscribe"
-                          :class="changedProfile.settings.skip_error_subscribe ? 'bg-green-500' : 'bg-slate-300'"
-                          class="relative inline-flex h-[24px] w-[48px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
-                      >
-                        <span class="sr-only">skip_error_subscribe</span>
-                        <span
-                            aria-hidden="true"
-                            :class="changedProfile.settings.skip_error_subscribe ? 'translate-x-6' : 'translate-x-0'"
-                            class="pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
-                        />
-                      </Switch>
-                      <SwitchLabel class="min-w-30 ml-4 text-sm font-light text-gray-700 dark:text-gray-300">Пропускать ошибки подписок</SwitchLabel>
-                    </div>
-                  </SwitchGroup>
-                  <SwitchGroup class="mb-2">
-                    <div class="flex items-center">
-                      <Switch
-                          v-model="changedProfile.settings.mute_new_target"
-                          :class="changedProfile.settings.mute_new_target ? 'bg-green-500' : 'bg-slate-300'"
-                          class="relative inline-flex h-[24px] w-[48px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
-                      >
-                        <span class="sr-only">mute_new_target</span>
-                        <span
-                            aria-hidden="true"
-                            :class="changedProfile.settings.mute_new_target ? 'translate-x-6' : 'translate-x-0'"
-                            class="pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
-                        />
-                      </Switch>
-                      <SwitchLabel class="min-w-30 ml-4 text-sm font-light text-gray-700 dark:text-gray-300">Заглушать новые таргеты</SwitchLabel>
-                    </div>
-                  </SwitchGroup>
-                </div>
-
-                <div class="my-6">
-                  <label class="block text-lg font-normal text-gray-700 dark:text-gray-300">Регулярные задачи</label>
-                  <!-- Удаление неактуальных таргетов -->
-                  <SwitchGroup class="mb-2">
-                    <div class="flex items-center">
-                      <Switch
-                          v-model="changedProfile.settings.cleanup_invalid_targets"
-                          :class="changedProfile.settings.cleanup_invalid_targets ? 'bg-green-500' : 'bg-slate-300'"
-                          class="relative inline-flex h-[24px] w-[48px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
-                      >
-                        <span class="sr-only">cleanup_invalid_targets</span>
-                        <span
-                            aria-hidden="true"
-                            :class="changedProfile.settings.cleanup_invalid_targets ? 'translate-x-6' : 'translate-x-0'"
-                            class="pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out"
-                        />
-                      </Switch>
-                      <SwitchLabel class="min-w-30 ml-4 text-sm font-light text-gray-700 dark:text-gray-300">Удалять неактуальные таргеты</SwitchLabel>
-                    </div>
-                  </SwitchGroup>
-                </div>
-
-              </div>
-            </div>
+<!--            </div>-->
           </div>
 
         </div>

@@ -19,7 +19,7 @@ export default {
         <h1 v-if="title" class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-300">{{title}}</h1>
         <p v-if="sub_title" class="text-gray-500  dark:text-gray-400">{{sub_title}}</p>
       </div>
-      <div class="mx-auto w-full px-4 py-6">
+      <div class="mx-auto w-full px-4 py-6" v-if="openFormAddClient">
         <Button text="Add new client" color="emerald" position="end" @click="openFormAddClient" />
       </div>
     </div>
